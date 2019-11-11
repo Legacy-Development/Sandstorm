@@ -1,4 +1,4 @@
 ﻿{
-  "token":"NjQzMjAwODgzMTY0ODM5OTcw.XciC7g.7bPqNmtFdGkmWelMSBXZqMO2e20",
+  "token":"",
   "prefix": "stm!"
    }
