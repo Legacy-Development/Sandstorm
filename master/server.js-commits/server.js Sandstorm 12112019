@@ -1,0 +1,63 @@
+const Discord = require("discord.js");
+const client = new Discord.Client();
+const ytdl = require("ytdl-core");
+const config = require("./config.json");
+const db = require("megadb")
+let warn_db = new db.crearDB("warns", "moderacion")
+let logs_db = new db.crearDB("logs", "moderacion")
+let prefix = config.prefix;
+
+
+
+var queue = new Map();
+
+client.on("ready", () => {
+  console.log('Sandstorm está listo!');
+  client.user.setPresence({
+    status: "online",
+    game:  {
+    name: "Memes",
+    type: "WATCHING"
+    }
+  })                           
+          });
+
+async function play(message, serverQueue) {
+  const args = message.content.split(" ");
+  const voiceChannel = message.member.voiceChannel;
+  if(!voiceChannel) return message.reply("debes entrar a un canal de voz");
+  const permission = voiceChannel.permissionsFor(message.client.user);
+  if(!permission.has('CONNECT')||!permission.has("SPEAK")) {
+    return message.channel.send("Necesito permisos para entrar al canal de voz") 
+  }
+  
+  const songInfo = await ytdl.getInfo(args[1]);
+  const song = {
+    title: songInfo.title,
+    url: songInfo.video_url,
+  };
+  
+  if(!serverQueue) {
+    const queueConstruct = {
+      textChannel: message.channel,
+      voiceChannel: voiceChannel,
+      connection: null,
+      songs: [],
+      volume: 5,
+      playing: true,
+    };
+    queue.set(message.guild.id, queueConstruct);
+    
+    queueConstruct.songs.push(song);
+    
+    try{
+      var connection = await voiceChannel.join();
+      queueConstruct.connection = connection;
+      playSong(message.guilld, queueConstruct.songs[0]);
+    } catch (err) {
+      console.log(err);
+    queue.delete(message.guild.id)
+    return message.channel.send("ha ocurrido un error al reproducir:" + err);
+  }
+}else{
+  serverQueue.songs(song);
