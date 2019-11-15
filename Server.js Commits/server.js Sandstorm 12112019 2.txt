@@ -294,4 +294,4 @@ function playSong(guild, song) {
     });
 
 
-    client.login(config.token);
+    client.login(config.token)
