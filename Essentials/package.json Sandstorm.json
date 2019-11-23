@@ -1,11 +1,11 @@
-﻿{
-  "name": "mybot",
+{
+  "name": "Sandstorm",
   "version": "0.0.1",
-  "description": "acerca de? su bot",
-  "main": "node server.js",
+  "description": "asandstorm es un pequeño proyecto de Legacy Development team (programado by: Blox#5019,MλSΤΣΓGッ#4130 & Juanchole Uwu #001)",
+  "main": "node Sandstorm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node Sandstorm.js"
   },
   "dependencies": {
     "discord.js": "^11.5.1",
@@ -21,7 +21,7 @@
     "google": "^2.1.0",
     "google-translate-api": "^2.3.0",
     "search-for": "^1.0.1",
-    "marsnpm": "^0.3.6",
+    "marsnpm": "^0.3.7",
     "mega-dtbs": "^0.1.17",
     "megadb": "^3.0.0"
   },
@@ -29,7 +29,7 @@
     "node": "10.x"
   },
   "repository": {
-    "url": "https://github.com/cratermaik"
+    "url": "https://github.com/Legacy-Development/Sandstorm"
   },
   "license": "MIT",
   "keywords": [
